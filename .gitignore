@@ -2,3 +2,6 @@
 *.pdb
 *.hi
 *.o
+*.ilk
+*.lib
+*.rdi
