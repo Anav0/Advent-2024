@@ -111,34 +111,27 @@ fn void! calculate_trails(Trailheads* heads, Board* board, int[2] board_size) {
 
                 if(v - v_prev == 1 && v != 9) {
                     queque.push(new_pos);
-//                    io::printfn("From: '%d' at (%d %d) to: '%d' at (%d %d)", v_prev, pos[0], pos[1], v, new_pos[0], new_pos[1]);
                 }
-                if(v - v_prev == 1 && v == 9 && !seen.has_key(new_pos)) {
+                if(v - v_prev == 1 && v == 9 ) {
                     seen.set(new_pos, true);
                     (*trailhead).number_of_destinations++;
-                    // ends.push(new_pos);
-                    // io::printfn("Found end at (%d %d)", new_pos[0], new_pos[1]);
                 }
             }
-            // io::printn("New direction check!");
         }
-        // print_pos(*board, board_size, &ends);
     }
 
 }
 
 fn void! main()
 {
-    int[2] board_size;
+    Pos board_size;
     Board board = read_board("./day10.txt", &board_size)!;
     Trailheads trailheads = find_all_trailheads(&board, board_size);
     calculate_trails(&trailheads, &board, board_size)!;
 
     int sum = 0;
     foreach(head : trailheads) {
-        // io::printfn("%d", head.number_of_destinations);
         sum += head.number_of_destinations;
     }
     io::printfn("%d", sum);
-
 }
